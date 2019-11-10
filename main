@@ -1,7 +1,9 @@
 import tkinter as tk
 
+#globals
 row=0
-screenW=900
+column=0
+screenW=1000
 screenH=400
 
 buttonH=2
@@ -19,20 +21,11 @@ def createWindow(width,height):
     root.geometry('{}x{}+{}+{}'.format(width,height,y,x))
     return root
 
-
-root=createWindow(screenW,screenH)
-
-#button -- do not touch
-b1=tk.Button(root,text="ADD",command=lambda:createTB(4,row,root)) #add row
-b1.configure(height=buttonH,width=buttonW)
-#b1.pack(side=tk.BOTTOM)
-b1.place(x=screenW//2,y=tbHeight+2*padY+buttonH+40)
-
 def createTB(n,m,root):
     tb=[tk.Text()]*n
     for i in range(n):
         tb[i]=tk.Text(root,height=tbHeight,width=tbWidth)
-        tb[i].insert(tk.END,'{}'.format(i))
+        tb[i].insert(tk.END,' ')
         #tb[i].grid(row=m)
         temp=tb[i]
         temp.grid(row=m,padx=padX,pady=padY,column=i)
@@ -48,9 +41,36 @@ def createTB(n,m,root):
     global row
     row+=1
     return tb
-tb1=createTB(4,row,root) #number of tb, row number
 
+def createLabel(a,b,c,d):
+    l=[tk.Label]*4
+    l[0]=tk.Label(root,text=a,relief=tk.RAISED)
+    l[1]=tk.Label(root,text=b,relief=tk.RAISED)
+    l[2] = tk.Label(root,text=c,relief=tk.RAISED)
+    l[3] = tk.Label(root,text=d,relief=tk.RAISED)
+    for i in range(4):
+        l[i].grid(row=0,padx=padX,pady=padY,column=i)
+    global row
+    row+=1
+    return l
+root=createWindow(screenW,screenH)
+
+l1=createLabel("Subject","Exp No","Date","Comment")
+#la=tk.Label(root,textvariable="abcde",relief=tk.FLAT)
+#la.grid(row=0,padx=padX,pady=padY,column=2)
+
+
+#buttons -- do not touch
+b1=tk.Button(root,text="ADD",command=lambda:createTB(4,row,root)) #add row
+b1.configure(height=buttonH,width=buttonW)
+b1.grid(row=1,padx=padX,pady=padY,column=5//2+1)
+
+
+tb1=createTB(4,row,root) #number of tb, row number,root
 row+=1
+
+
+
 root.mainloop()
 
 
