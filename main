@@ -1,7 +1,7 @@
 import tkinter as tk
 
 row=0
-screenW=800
+screenW=900
 screenH=400
 
 buttonH=2
@@ -37,7 +37,14 @@ def createTB(n,m,root):
         temp=tb[i]
         temp.grid(row=m,padx=padX,pady=padY,column=i)
         #tb[i].pack()
-    b1.place(x=screenW//2,y=b1.winfo_y()+tbHeight+padY+buttonH+50)
+
+    #b1.place(x=screenW//2,y=b1.winfo_y()+tbHeight+padY+buttonH+50)
+    b1.grid(row=m+1,padx=padX,pady=padY,column=i//2+1)
+    b2 = tk.Button(root, text="Submit")  # add row
+    b2.configure(height=buttonH, width=buttonW)
+    # b1.pack(side=tk.BOTTOM)
+    b2.grid(row=m,padx=padX,pady=padY,column=i+1)
+
     global row
     row+=1
     return tb
