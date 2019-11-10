@@ -22,10 +22,11 @@ def createWindow(width,height):
 
 root=createWindow(screenW,screenH)
 
+#button -- do not touch
 b1=tk.Button(root,text="ADD",command=lambda:createTB(4,row,root)) #add row
 b1.configure(height=buttonH,width=buttonW)
 #b1.pack(side=tk.BOTTOM)
-b1.place(x=screenW//2,y=tbHeight+padY+buttonH+10)
+b1.place(x=screenW//2,y=tbHeight+2*padY+buttonH+40)
 
 def createTB(n,m,root):
     tb=[tk.Text()]*n
@@ -36,6 +37,7 @@ def createTB(n,m,root):
         temp=tb[i]
         temp.grid(row=m,padx=padX,pady=padY,column=i)
         #tb[i].pack()
+    b1.place(x=screenW//2,y=b1.winfo_y()+tbHeight+padY+buttonH+50)
     global row
     row+=1
     return tb
