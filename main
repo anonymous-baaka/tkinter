@@ -1,0 +1,47 @@
+import tkinter as tk
+
+row=0
+screenW=800
+screenH=400
+
+buttonH=2
+buttonW=10
+
+tbHeight=2
+tbWidth=20
+
+padX=10
+padY=5
+def createWindow(width,height):
+    root = tk.Tk()
+    x = (root.winfo_screenmmwidth() // 2)
+    y = (root.winfo_screenheight() // 2)
+    root.geometry('{}x{}+{}+{}'.format(width,height,y,x))
+    return root
+
+
+root=createWindow(screenW,screenH)
+
+b1=tk.Button(root,text="ADD",command=lambda:createTB(4,row,root)) #add row
+b1.configure(height=buttonH,width=buttonW)
+#b1.pack(side=tk.BOTTOM)
+b1.place(x=screenW//2,y=tbHeight+padY+buttonH+10)
+
+def createTB(n,m,root):
+    tb=[tk.Text()]*n
+    for i in range(n):
+        tb[i]=tk.Text(root,height=tbHeight,width=tbWidth)
+        tb[i].insert(tk.END,'{}'.format(i))
+        #tb[i].grid(row=m)
+        temp=tb[i]
+        temp.grid(row=m,padx=padX,pady=padY,column=i)
+        #tb[i].pack()
+    global row
+    row+=1
+    return tb
+tb1=createTB(4,row,root) #number of tb, row number
+
+row+=1
+root.mainloop()
+
+
